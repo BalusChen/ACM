@@ -3,15 +3,22 @@
  *
  *       Filename:  Judge_Route_Circle.cpp
  *
- *    Description:  
+ *    Description:  Initially, there is a Robot at position(0,0).
+ *                  Given a sequence of its moves, judge if this robort makes a circle
+ *                  which means it moves back to the original place.
+ *                  The move sequence is represented by a string.
+ *                  And each move is represented by a character. The valid robot moves
+ *                  are R(right), L(left), U(up), and D(down).
+ *                  The output should be true or false representing whether the robot
+ *                  makes a circle.
  *
  *        Version:  1.0
  *        Created:  09/17/2017 09:11:45 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  ctom
+ *   Organization:  ieach
  *
  * =====================================================================================
  */

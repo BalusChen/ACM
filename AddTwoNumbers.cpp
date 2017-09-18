@@ -11,7 +11,7 @@
  *       Compiler:  gcc
  *
  *         Author:  ctom 
- *   Organization:  iEach
+ *   Organization:  ieach
  *
  * =====================================================================================
  */
