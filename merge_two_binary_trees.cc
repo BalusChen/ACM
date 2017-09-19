@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  merge_two_binary_trees.cpp
+ *       Filename:  merge_two_binary_trees.cc
  *
  *    Description:  Given tow binary trees and imagine that when you put one
  *                  of then to cover another, some nodes of the two trees are
