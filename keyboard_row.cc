@@ -24,7 +24,7 @@
 #include <unordered_set>
 
 /* 
- *   oh my God, my program runs so slowly!  
+ *   Oh my God, my program runs so slowly!  
  *   Obviously, I should have used the associative container.
  *   It suits this situation very well.
  */
@@ -94,7 +94,7 @@ std::vector<std::string> FindWords2(std::vector<std::string> &words){
 			if(rows[k].count(static_cast<char>(tolower(words[i][0]))) > 0) row = k;
 		}
 
-		// check if all the other characters are belongs to the same row as the first char does
+		// check if all the other characters belongs to the same row as the first char does
 		// use 'break' to save some time for unnecessary checks
 		for(int j = 0; j < words[i].size(); ++j){
 			if(rows[row].count(static_cast<char>(tolower(words[i][j]))) == 0) break;
