@@ -29,23 +29,23 @@ void ReverseAWord(std::string &s){
 	}
 }
 
+/*  My own solution. The program runs very slowly. */
 std::string ReverseWords(std::string s){
 	std::vector<std::string> str_vec;
 	std::string ret;
-	std::istringstream line(s);
+	std::istringstream line(s); //cut the string into several words
 	std::string word;
 	while(line >> word){
 		str_vec.push_back(word);
 	}
 	for(auto &str : str_vec){
-		ReverseAWord(str);
+		ReverseAWord(str); //reverse each word
 	}
 	for(std::size_t i = 0; i < str_vec.size(); ++i){
 		if(i == str_vec.size() - 1){
 			ret += str_vec[i];
 		}else{
-			ret = ret + str_vec[i] + " ";
-
+			ret = ret + str_vec[i] + " "; //concatenate these words into a string
 		}
 	}
 	return ret;
