@@ -14,8 +14,8 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  ctom
+ *   Organization:  ieach
  *
  * =====================================================================================
  */
