@@ -4,7 +4,7 @@
  *       Filename:  remove_duplicates_from_sorted_list.cc
  *
  *    Description:  Given a sorted list, delete all duplicates such that each element
- *                  appear only once.
+ *                  appears only once.
  *                  Example:
  *                          Given 1->1->2, return 1->2
  *                          Given 1->1->2->3->3, return 1->2->3
