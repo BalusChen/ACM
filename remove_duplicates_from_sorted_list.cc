@@ -61,7 +61,7 @@ ListNode* DeleteDuplicates(ListNode* head){
 	auto slow = head;
 	auto fast = head->next;
 	while(true){
-		//since the list is already sorted, the duplicates must be continuous
+		//since the list has already been sorted, the duplicates must be continuous
 		while(fast != nullptr && fast->data == slow->data){
 			fast = fast->next;
 		}
