@@ -3,7 +3,7 @@
  *
  *       Filename:  remove_duplicates_from_sorted_list.cc
  *
- *    Description:  Given a sorted list, deleted all duplicates such that each element
+ *    Description:  Given a sorted list, delete all duplicates such that each element
  *                  appear only once.
  *                  Example:
  *                          Given 1->1->2, return 1->2
