@@ -15,8 +15,8 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  ctom
+ *   Organization:  ieach
  *
  * =====================================================================================
  */
@@ -35,7 +35,7 @@ void show(const std::vector<int> &ivec) {
  * Method1: the program runs not fast.
  * Use associative container to solve the problem.
  * Note that: 
- *           1. elements in map and multimap are ordered.
+ *           1. elements in map and multimap are in order.
  *           2. the keys of elements in map are unique while not in multimap.
  *           3. operator[] of map is different from others.
  *           4. operator[] is not supported in multiset.
@@ -69,7 +69,7 @@ std::vector<int> topKFrequent(std::vector<int> &nums, int k) {
 
 	/*
 	 * use reverse iterator of multimap 
-	 * you can also choose to use std::greater rather than std::less while defining rimap, and then you should use iterator rather reverse iterator
+	 * you can also choose to use std::greater rather than std::less while defining rimap, and then you should use iterator rather than reverse iterator
 	 */
 	std::vector<int> ret;
 	for (auto it = rimap.crbegin(); k > 0 && it != rimap.crend(); ++it, --k) {
