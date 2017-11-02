@@ -59,6 +59,8 @@ void print(ListNode *head) {
 }
 
 
+/* My solution */
+/*
 ListNode* oddEvenList(ListNode *head) {
 	if (head == nullptr || head->next == nullptr) {
 		return head;
@@ -82,6 +84,20 @@ ListNode* oddEvenList(ListNode *head) {
 	}
 	odd_end->next = even_beg;//link odd with even;
 	even_end->next = nullptr;
+	return head;
+}
+*/
+/* A Better Solution From Leetcode */
+ListNode* oddEvenList(ListNode *head) {
+	if (head == nullptr || head->next == nullptr) {
+		return head;
+	}
+	auto odd = head, even_head = head->next, even = even_head;
+	while (even && even->next) {
+		odd = odd->next = even->next;
+		even = even->next = odd->next;
+	}
+	odd->next = even_head;
 	return head;
 }
 
