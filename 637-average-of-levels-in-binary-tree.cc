@@ -18,7 +18,7 @@ class Solution {
             std::queue<TreeNode*> q;
             TreeNode *top;
             double sum;
-            int sz;
+            int sz; // 记录每一层的节点个数
 
             q.push(root);
             while (!q.empty()) {
