@@ -63,11 +63,13 @@ void PrintTree(TreeNode *root) {
         for (int i = 0; i < sz; ++i) {
             p = q.front();
             q.pop();
-            std::cout << p->val << "  ";
-            if (p->left != nullptr)
+            if (p != nullptr) {
+                std::cout << p->val << "  ";
                 q.push(p->left);
-            if (p->right != nullptr)
                 q.push(p->right);
+            } else {
+                std::cout << "#" << "  ";
+            }
         }
         std::cout << '\n';
     }
