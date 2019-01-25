@@ -1,4 +1,4 @@
-#include "../../include/make-tree.h"
+#include "../include/make-tree.h"
 #include <queue>
 
 std::vector<int> in_order {3, 2, 1, 4, 5, 7, 6};
