@@ -18,7 +18,7 @@ class Solution {
         }
 
         bool IsLeaf(TreeNode *n) {
-            return n->left == nullptr && n->right == nullptr; 
+            return n->left == nullptr && n->right == nullptr;
         }
 
 };
