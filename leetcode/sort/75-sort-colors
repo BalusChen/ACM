@@ -1,0 +1,12 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        std::vector<int> buffer(nums.size(), 0);
+        std::vector<int> count(3, 0);
+
+        for (auto c : nums) ++count[c];
+        for (int i = 1; i < 3; ++i) count[i] += count[i-1];
+        for (int i = 0; i < buffer.size(); ++i) buffer[--count[nums[i]]] = std::move(nums[i]);
+        for (int j = 0; j < nums.size(); ++j) nums[j] = std::move(buffer[j]);
+    }
+};
