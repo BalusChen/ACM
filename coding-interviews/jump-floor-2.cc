@@ -1,9 +1,11 @@
+#include <stdio.h>
 #include <vector>
 
 class Solution {
 public:
-    int jumpFloor(int number) {
+    int jumpFloorII(int number) {
         dp.resize(number+1, -1);
+
         dp[0] = 1;
         dp[1] = 1;
 
@@ -13,11 +15,18 @@ public:
     }
 
     int aux(int n) {
+        int sum;
+
         if (dp[n] != -1) {
             return dp[n];
         }
 
-        dp[n] =  aux(n-1)+aux(n-2);
+        sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += aux(n-i);
+        }
+
+        dp[n] = sum;
 
         return dp[n];
     }
