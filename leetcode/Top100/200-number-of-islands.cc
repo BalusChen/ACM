@@ -3,23 +3,26 @@
 
 class Solution
 {
-    using Matrix = std::vector<std::vector<int>>;
+    template<typename T>
+    using Matrix = std::vector<std::vector<T>>;
 
     public:
         int NumIslands(std::vector<std::vector<int>> &grid) {
-            int  count;
+            int           count;
+            Matrix<bool>  visited;
 
             if (grid.empty()) {
                 return 0;
             }
 
             count = 0;
-            visited = std::vector<std::vector<bool>> (grid.size(), std::vector<bool>(grid[0].size(), false));
+            visited = Matrix<bool> (grid.size(), std::vector<bool>(grid[0].size(), false));
+
             for (int i = 0; i < grid.size(); i++) {
                 for (int j = 0; j < grid[i].size(); j++) {
                     if (grid[i][j] != 0 && !visited[i][j]) {
-                        printf("i = %d\tj = %d\tcount = %d\n", i, j, count);
-                        dfs(grid, i, j);
+                        printf("i = %d\tj = %d\tcount = %d\n", i, j, count);    // debug
+                        dfs(grid, visited, i, j);
                         count++;
                     }
                 }
@@ -28,7 +31,7 @@ class Solution
             return count;
         }
 
-        void dfs(Matrix &grid, int i, int j) {
+        void dfs(Matrix<int> &grid, Matrix<bool> &visited, int i, int j) {
             if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size()) {
                 // out of bound
                 return;
@@ -36,7 +39,6 @@ class Solution
 
             if (grid[i][j] == 0) {
                 // meet water
-                visited[i][j] = true;
                 return;
             }
 
@@ -47,18 +49,11 @@ class Solution
 
             visited[i][j] = true;
 
-            // dfs(grid, i-1, j-1);    // top-left
-            dfs(grid, i-1, j);      // top
-            // dfs(grid, i-1, j+1);    // top-right
-            dfs(grid, i, j+1);      // right
-            // dfs(grid, i+1, j+1);    // bottom-right
-            dfs(grid, i+1, j);      // bottom
-            // dfs(grid, i+1, j-1);    // bottom-left
-            dfs(grid, i, j-1);      // left
+            dfs(grid, visited, i-1, j);      // top
+            dfs(grid, visited, i, j+1);      // right
+            dfs(grid, visited, i+1, j);      // bottom
+            dfs(grid, visited, i, j-1);      // left
         }
-
-    private:
-        std::vector<std::vector<bool>> visited;
 };
 
 int
