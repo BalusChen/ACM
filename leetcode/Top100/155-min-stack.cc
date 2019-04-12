@@ -71,10 +71,10 @@ class MinStack1 {
         std::stack<int>  supporting_stk_;
 };
 
-class MinStack {
+class MinStack2 {
     public:
         /** initialize your data structure here. */
-        MinStack() = default;
+        MinStack2() = default;
 
         void push(int x) {
             main_stk_.push(x);
@@ -110,7 +110,44 @@ class MinStack {
 };
 
 
-    int
+class MinStack {
+    public:
+        MinStack() {
+            min_ = INT_MAX;
+        }
+
+        void push(int x) {
+            if (x <= min_) {
+                stk_.push(min_);
+                min_ = x;
+            }
+
+            stk_.push(x);
+        }
+
+        void pop() {
+            if (stk_.top() == min_) {
+                stk_.pop();
+                min_ = stk_.top();
+            }
+
+            stk_.pop();
+        }
+
+        int top() {
+            return stk_.top();
+        }
+
+        int getMin() {
+            return min_;
+        }
+
+    private:
+        std::stack<int>  stk_;
+        int  min_;
+};
+
+int
 main(int argc, char **argv)
 {
     MinStack *stk = new MinStack();
