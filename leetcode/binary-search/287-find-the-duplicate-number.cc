@@ -32,7 +32,8 @@ class Solution1 {
         }
 };
 
-class Solution {
+
+class Solution2 {
     public:
         int findDuplicate(std::vector<int>& nums) {
             std::unordered_map<int, int>  table;
@@ -46,6 +47,37 @@ class Solution {
             return -1;
         }
 };
+
+
+/*
+ * floyd circle algorithm
+ */
+class Solution {
+    public:
+        int findDuplicate(std::vector<int>& nums) {
+            int  slow, fast;
+
+            if (nums.size() < 2) {
+                return -1;
+            }
+
+            slow = nums[0];
+            fast = nums[nums[0]];
+            while (slow != fast) {
+                slow = nums[slow];
+                fast = nums[nums[fast]];
+            }
+
+            slow = 0;
+            while (fast != slow) {
+                fast = nums[fast];
+                slow = nums[slow];
+            }
+
+            return slow;
+        }
+};
+
 
 int
 main(int argc, char **argv)
