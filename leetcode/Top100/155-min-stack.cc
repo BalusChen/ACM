@@ -2,16 +2,16 @@
 #include <iostream>
 
 
-class MinStack {
+class MinStack1 {
     public:
         /** initialize your data structure here. */
-        MinStack() {
+        MinStack1() {
             size_     = 0;
             capacity_ = 16; // initial capacity
             data_     = new int[capacity_];
         }
 
-        ~MinStack() {
+        ~MinStack1() {
             delete[] data_; // ATTENTION: use `delete[]` rather than delete
             size_ = capacity_ = 0;
         }
@@ -70,6 +70,45 @@ class MinStack {
 
         std::stack<int>  supporting_stk_;
 };
+
+class MinStack {
+    public:
+        /** initialize your data structure here. */
+        MinStack() = default;
+
+        void push(int x) {
+            main_stk_.push(x);
+            if (min_stk_.empty() || x <= min_stk_.top()) {
+                min_stk_.push(x);
+            }
+        }
+
+        void pop() {
+            assert(!main_stk_.empty());
+            if (main_stk_.top() == min_stk_.top()) {
+                min_stk_.pop();
+            }
+
+            main_stk_.pop();
+        }
+
+        int top() {
+            assert(!main_stk_.empty());
+
+            return main_stk_.top();
+        }
+
+        int getMin() {
+            assert(!min_stk_.empty());
+
+            return min_stk_.top();
+        }
+
+    private:
+        std::stack<int>  main_stk_;
+        std::stack<int>  min_stk_;
+};
+
 
     int
 main(int argc, char **argv)
