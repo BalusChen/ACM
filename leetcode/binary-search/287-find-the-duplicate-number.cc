@@ -1,7 +1,8 @@
 #include <vector>
 #include <stdio.h>
+#include <unordered_map>
 
-class Solution {
+class Solution1 {
     public:
         int findDuplicate(std::vector<int>& nums) {
             int  lo, hi, mid;
@@ -28,6 +29,21 @@ class Solution {
             }
 
             return nums[hi];
+        }
+};
+
+class Solution {
+    public:
+        int findDuplicate(std::vector<int>& nums) {
+            std::unordered_map<int, int>  table;
+
+            for (auto c : nums) {
+                if (++table[c] > 1) {
+                    return c;
+                }
+            }
+
+            return -1;
         }
 };
 
