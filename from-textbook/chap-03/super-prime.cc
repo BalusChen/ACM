@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) Jianyong chen
+ * Copyright (C) Jianyong Chen
  */
 
 #include <vector>
