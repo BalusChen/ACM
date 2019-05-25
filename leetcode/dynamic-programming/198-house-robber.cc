@@ -16,7 +16,7 @@ class Solution {
                 dp[i] = std::max(dp[i-1], nums[i] + dp[i-2]);
             }
 
-            return *(std::end(dp)-1);
+            return dp.back();
         }
 };
 
