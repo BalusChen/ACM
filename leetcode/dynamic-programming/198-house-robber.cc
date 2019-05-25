@@ -34,6 +34,7 @@ main(int argc, char **argv)
     nums = { 1, 3, 1 };
     nums = { 4, 1, 2, 7, 5, 3, 1 };
     ans = solution.rob(nums);
-
     printf("ans = %d\n", ans);
+
+    return 0;
 }
