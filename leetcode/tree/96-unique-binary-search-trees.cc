@@ -8,28 +8,48 @@
 #include <cstdlib>
 
 
-std::vector<std::vector<int>> dp;
+std::vector<int>  dp;
 
 
 static int aux_1(int lo, int hi);
 static int aux_2(int lo, int root, int hi);
 
 
-int numTrees(int n) {
-    dp.resize(n);
-
-    for (int i = 0; i < n; i++) {
-        dp[i] = std::vector<int>(n, 0);
-    }
+static int
+numTrees(int n) {
+    dp.resize(n, 0);
 
     return aux_1(1, n);
 }
 
+static int
+aux_1(int lo, int hi) {
+    int  i, sum;
 
-int aux_2(int lo, int root, int hi) {
+    if (lo > hi) {
+        return 0;
+    }
+
+    // 由于 lo 和 hi 是从 1 开始的，所以从 dp 中取数据时要-1
+    if (dp[hi-lo] != 0) {
+        return dp[hi-lo];
+    }
+
+    sum = 0;
+    for (i = lo; i <= hi; i++) {
+        sum += aux_2(lo, i, hi);
+    }
+
+    dp[hi-lo] = sum;
+
+    return sum;
+}
+
+static int
+aux_2(int lo, int root, int hi) {
     int  num_left, num_right, sum;
 
-    if (lo >= hi) {
+    if (lo == hi) {
         return 1;
     }
 
@@ -46,33 +66,10 @@ int aux_2(int lo, int root, int hi) {
     return sum;
 }
 
-int aux_1(int lo, int hi) {
-    int     sum;
-
-    if (lo > hi) {
-        return 0;
-    }
-
-    // 由于 lo 和 hi 是从 1 开始的，所以从 dp 中取数据时要-1
-    if (dp[lo-1][hi-1] != 0) {
-        return dp[lo-1][hi-1];
-    }
-
-    sum = 0;
-    for (int i = lo; i <= hi; i++) {
-        sum += aux_2(lo, i, hi);
-    }
-
-    dp[lo-1][hi-1] = sum;
-
-    return sum;
-}
-
-
 int
 main(int argc, char **argv)
 {
-    int     n, sum;
+    int  n, sum;
 
     if (argc != 2) {
         fprintf(stderr, "usage: %s n\n", argv[0]);
@@ -83,13 +80,10 @@ main(int argc, char **argv)
     sum = numTrees(n);
     printf("num = %d\n", sum);
 
-    for (auto v : dp) {
-        for (auto c : v) {
-            printf("%d  ", c);
-        }
-
-        printf("\n");
+    for (auto c : dp) {
+        printf("%d  ", c);
     }
 
+    printf("\n");
     exit(0);
 }
