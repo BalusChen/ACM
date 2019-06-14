@@ -38,8 +38,11 @@ class Solution
 
             return jumps;
         }
+};
 
-        int jump2(std::vector<int> &nums) {
+class Solution2 {
+    public:
+        int jump(std::vector<int> &nums) {
             int  i, cur_max, pre_max, jumps;
 
             if (nums.size() <= 1) {
@@ -74,26 +77,27 @@ class Solution
 
             return jumps;
         }
+
 };
 
 
 int
 main(int argc, char **argv)
 {
-    Solution          ans;
+    Solution2         ans;
     std::vector<int>  nums;
 
     nums = { 2, 3, 1, 1, 4 };
-    printf("min jumps: %d\n", ans.jump2(nums));
+    printf("min jumps: %d\n", ans.jump(nums));
 
     nums = { 2, 2, 1, 1, 4 };
-    printf("min jumps: %d\n", ans.jump2(nums));
+    printf("min jumps: %d\n", ans.jump(nums));
 
     nums = { 1, 1, 1, 1, 1 };
-    printf("min jumps: %d\n", ans.jump2(nums));
+    printf("min jumps: %d\n", ans.jump(nums));
 
     nums = { 7, 4, 1, 2, 3 };
-    printf("min jumps: %d\n", ans.jump2(nums));
+    printf("min jumps: %d\n", ans.jump(nums));
 
     exit(0);
 }
