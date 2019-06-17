@@ -1,11 +1,146 @@
 
 /*
- *
+ * Copyright (C) Jianyong Chen
  */
 
 #include <vector>
 #include <string>
 #include <cstdio>
+
+class Solution3
+{
+    public:
+
+        std::string longestPalindrome(std::string s) {
+            int  i, len1, len2, cur_len, max_len, start;
+
+            if (s.size() <= 1) {
+                return s;
+            }
+
+            max_len = 1;
+            start = 0;
+            for (i = 0; i < s.size(); i++) {
+                len1 = expandFromCenter(s, i, i);
+                len2 = expandFromCenter(s, i, i+1);
+
+                cur_len = std::max(len1, len2);
+                if (cur_len > max_len) {
+                    max_len = cur_len;
+                    start = i - (cur_len - 1) / 2;
+                }
+            }
+
+            return s.substr(start, max_len);
+        }
+
+    private:
+        int expandFromCenter(const std::string &str, int left, int right) const {
+
+            while (left >= 0 && right < str.size() && str[left] == str[right]) {
+                left--;
+                right++;
+            }
+
+            return right - left - 1;
+        }
+};
+
+
+class Solution2
+{
+    private:
+        template<typename T>
+        using Matrix = std::vector<std::vector<int>>;
+
+    public:
+
+        std::string longestPalindrome(std::string s) {
+            if (s.size() <= 1) {
+                return s;
+            }
+
+            dp_ = Matrix<int> (s.size(), std::vector<int>(s.size(), -1));
+
+            str_ = &s;
+            beg_ = 0;
+            max_len_ = 1;
+
+            aux(0, s.size()-1);
+
+            return s.substr(beg_, max_len_);
+        }
+
+        void showDP() {
+            for (auto & v : dp_) {
+                for (auto c : v) {
+                    printf("%d  ", c);
+                }
+
+                printf("\n");
+            }
+        }
+
+        int aux(int i, int j) {
+            int  left, right, middle;
+
+            if (dp_[i][j] != -1) {
+                return dp_[i][j];
+            }
+
+            if (i == j) {
+                dp_[i][j] = 1;
+                return 1;
+            }
+
+            if ((*str_)[i] == (*str_)[j]) {
+
+                if (j - i == 1) {
+                    dp_[i][j] = 2;
+                    if (max_len_ < 2) {
+                        max_len_ = 2;
+                        beg_ = i;
+                    }
+
+                    return 2;
+                }
+
+                middle = aux(i+1, j-1);
+
+                if (middle == j-i-1) {
+
+                    dp_[i][j] = middle + 2;
+
+                    if (max_len_ < dp_[i][j]) {
+                        max_len_ = dp_[i][j];
+                        beg_ = i;
+                    }
+
+                    return middle+2;
+                } /* else: fall through */
+
+            }
+
+            left = aux(i, j-1);
+            right = aux(i+1, j);
+
+            if (left > right) {
+                dp_[i][j] = left;
+
+            } else {
+                dp_[i][j] = right;
+            }
+
+            return dp_[i][j];
+        }
+
+
+    private:
+
+        int           beg_, max_len_;
+        Matrix<int>   dp_;
+        std::string  *str_;
+};
 
 
 class Solution
@@ -110,48 +245,38 @@ int
 main(int argc, char **argv)
 {
     Solution     ans;
+    Solution2    ans2;
+    Solution3    ans3;
     std::string  str, palindrome;
 
 
     str = "babad";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "cbbd";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "aacbbcddddddd";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "aba";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "c";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "abcda";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     str = "babadada";
-    palindrome = ans.longestPalindrome(str);
+    palindrome = ans3.longestPalindrome(str);
     printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
-
-    str = "cbbd";
-    palindrome = ans.longestPalindrome(str);
-    printf("palindrome(%s) = %s\n", str.c_str(), palindrome.c_str());
-    ans.showDP();
 
     return 0;
 }
