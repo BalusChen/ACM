@@ -10,7 +10,7 @@ class Solution
 {
     public:
         void solve() {
-            int  i, j, round_nelts, res, res_1, round;
+            int  i, j, round_nelts, res, round;
 
             std::vector<int>              num, new_num;
             std::queue<std::vector<int>>  que;
@@ -44,12 +44,13 @@ class Solution
                     for (j = 0; j <= 9; j++) {
 
                         // 添加 1 位
-                        res_1 = res * 10 + j;
-                        if (res_1 % round == 0) {
+                        res = res * 10 + j;
+                        if (res % round == 0) {
                             new_num = num;
                             new_num.push_back(j);
                             que.push(new_num);
                         }
+                        res = (res - j) / 10;
                     }
                 }
 
