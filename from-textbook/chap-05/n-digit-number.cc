@@ -54,14 +54,14 @@ solve(int ndigits)
 
             /*
              * 如果不能被整除的话，那就从在第 i 位上+1(记得要处理进位)
-             * 并且向前回溯到最近一个可以被对应的 i 整除的位置上
+             * 并且向前回溯到最后一个不可以被对应的 i 整除的位置上
              */
 
             target[i]++;
             while (target[i] > 9 && i > 0) {
+                target[i-1] += target[i] / 10;
                 target[i] = 0;
                 i--;
-                target[i]++;
             }
 
             is_valid = false;
@@ -87,8 +87,23 @@ solve(int ndigits)
             /*
              * 既然这个数字已经满足要求了，那么最低位+1 继续探索下一个可行数字
              * QUESTION: 但是这里有一个不太懂，+1 之后不用处理可能产生的进位么？
+             *
+             * OPTIMIZE: 这里是否可以做一些优化，因为当前数字已经是符合要求的了，
+             * 所以+1 不一定能够满足要求(除非 ndigits == 1，否则都不会满足要求)
+             * 而应该 + ndigits
+             *
+             * 比如说 121 满足 ndigits == 3 时的要求，那么 122, 123 都不可能会满足要求
+             * 而 121 + 3 却可以满足要求
+             * 当然如果 ndigits 比较大，导致加了之后需要进位，那么就可能还是不满足了
+             * 但是这样还是有好处，就是还是略去了一些数字，也会提高效率
              */
-            target[i]++;
+            target[i] += ndigits;
+            while (target[i] > 9 && i > 0) {
+                target[i-1] += target[i] / 10;
+                target[i] = 0;
+                i--;
+            }
+            is_valid = false;
         }
     }
 
