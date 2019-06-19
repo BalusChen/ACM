@@ -56,14 +56,48 @@ class Solution
         std::vector<int>  *nums;
 };
 
+class Solution2
+{
+    public:
+        int lengthOfLIS(std::vector<int> &nums) {
+
+            if (nums.size() < 2) {
+                return nums.size();
+            }
+
+            int  i, j, next, max_len;
+            int  dp[nums.size()];
+
+            dp[nums.size()-1] = 1;
+            max_len = 1;
+            for (i = nums.size()-2; i >= 0; i--) {
+                next = 0;
+                for (j = i+1; j < nums.size(); j++) {
+                    if (nums[j] > nums[i] && dp[j] > next) {
+                        next = dp[j];
+                    }
+                }
+
+                dp[i] = next + 1;
+                if (dp[i] > max_len) {
+                    max_len = dp[i];
+                }
+            }
+
+            return max_len;
+        }
+};
+
+
 int
 main(int argc, char **argv)
 {
     Solution          ans;
+    Solution2         ans2;
     std::vector<int>  nums;
 
     nums = { 10, 9, 2, 5, 3, 7, 101, 18 };
-    printf("len: %d\n", ans.lengthOfLIS(nums));
+    printf("len: %d\n", ans2.lengthOfLIS(nums));
 
     return 0;
 }
