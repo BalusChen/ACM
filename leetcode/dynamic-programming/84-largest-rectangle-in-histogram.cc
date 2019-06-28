@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <stack>
+#include <cstdio>
 
 class Solution
 {
