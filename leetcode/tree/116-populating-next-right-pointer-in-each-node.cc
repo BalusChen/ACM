@@ -23,30 +23,19 @@ class Solution {
     public:
         Node* connect(Node* root) {
             int                 level_size, i;
-            Node              **prev, *front;
+            Node              **prev, *front, dummy_head;
             std::queue<Node *>  que;
 
             if (root == nullptr) {
                 return nullptr;
             }
 
+            prev = &dummy_head.next;
             que.push(root);
             while (!que.empty()) {
 
-                // handle first element specially
                 level_size = que.size();
-                front = que.front();
-                if (front->left != nullptr) {
-                    que.push(front->left);
-                }
-                if (front->right != nullptr) {
-                    que.push(front->right);
-                }
-
-                prev = &front->next;
-                que.pop();
-
-                for (i = 1; i < level_size; i++) {
+                for (i = 0; i < level_size; i++) {
                     front = que.front();
                     que.pop();
                     *prev = front;
@@ -62,6 +51,7 @@ class Solution {
                 }
 
                 *prev = nullptr;
+                prev = &dummy_head.next;
             }
 
             return root;
