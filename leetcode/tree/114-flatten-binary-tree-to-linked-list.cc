@@ -7,6 +7,8 @@
 #include "../include/make-tree.h"
 #include <stack>
 
+/* iterative version */
+
 class Solution
 {
     public:
@@ -36,11 +38,36 @@ class Solution
         }
 };
 
+/* recursive version */
+
+class Solution2 {
+    public:
+        void flatten(TreeNode *root) {
+            TreeNode  *p;
+
+            if (root == nullptr) {
+                return;
+            }
+
+            flatten(root->left);
+            flatten(root->right);
+
+            std::swap(root->left, root->right);
+
+            p = root;
+            while (p->right != nullptr) {
+                p = p->right;
+            }
+            p->right = root->left;
+            root->left = nullptr;
+        }
+};
+
 
 int
 main(int argc, char **argv)
 {
-    Solution           ans;
+    Solution2          ans;
     TreeNode           dummy_head(0), *root;
     std::vector<int>   elts;
 
