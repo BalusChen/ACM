@@ -7,15 +7,13 @@
 #include <string>
 #include <stack>
 
-
 class Solution {
-    public:
-
+public:
         bool isLeft(char ch) {
             return ch == '(' || ch == '[' || ch == '{';
         }
 
-        char theOther(char ch) {
+        char leftPart(char ch) {
             switch (ch) {
                 case ')':
                     return '(';
@@ -33,8 +31,8 @@ class Solution {
             char                right;
             std::stack<char>    stk;
 
-            if (s.empty()) {
-                return true;
+            if (s.size() % 2 == 1) {
+                return false;   // odd-length string won't be balanced
             }
 
             for (i = 0; i < s.size(); i++) {
@@ -47,8 +45,7 @@ class Solution {
                         return false;
                     }
 
-                    right = theOther(s[i]);
-                    if (stk.top() != right) {
+                    if (stk.top() != leftPart(s[i])) {
                         return false;
                     }
 
