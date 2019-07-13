@@ -17,12 +17,10 @@ class Solution {
 
             for (i = 0, j = 0, k = 0; i < nums1.size() && j < nums2.size(); k++) {
                 if (nums1[i] < nums2[j]) {
-                    printf("get from nums1\n");
                     all[k] = nums1[i];
                     i++;
 
                 } else {
-                    printf("get from nums2\n");
                     all[k] = nums2[j];
                     j++;
                 }
@@ -43,8 +41,7 @@ class Solution {
                 median = (all[(all.size()-1) / 2] + all[all.size() / 2]) / 2.0;
             }
 
-
-#if 1
+#if 0
             for (auto c : all) {
                 std::cout << c << "  ";
             }
