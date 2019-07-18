@@ -7,36 +7,35 @@
 #include <vector>
 
 class Solution {
-	public:
-		bool searchMatrix(std::vector<std::vector<int>>& matrix, int target) {
-			for (auto &v : matrix) {
-				if (bsearch(v, target)) {
-					return true;
-				}
-			}
+    public:
+        bool searchMatrix(std::vector<std::vector<int>>& matrix, int target) {
+            int  row, col;
+            int  x, y;
 
-			return false;
-		}
+            if (matrix.empty()) {
+                return false;
+            }
 
-		bool bsearch(std::vector<int> &nums, int target) {
-			int  lo, hi, mid;
+            /*
+             * 从最大行的最小元素开始搜索
+             *      1. 如果 target 比它大，那么搜索下一列
+             *      2. 如果 target 比它小，那么搜索上一行
+             */
 
-			lo = 0;
-			hi = nums.size()-1;
-			while (lo <= hi) {
-				mid = lo + (hi - lo) / 2;
+            row = matrix.size() - 1;
+            col = 0;
+            while (row >= 0 && row < matrix.size() && col >= 0 && col < matrix[0].size()) {
+                if (matrix[row][col] < target) {
+                    col++;
 
-				if (target < nums[mid]) {
-					hi = mid - 1;
+                } else if(target < matrix[row][col]) {
+                    row--;
 
-				} else if (target > nums[mid]) {
-					lo = mid + 1;
+                } else {
+                    return true;
+                }
+            }
 
-				} else {
-					return true;
-				}
-			}
-
-			return false;
-		}
+            return false;
+        }
 };
