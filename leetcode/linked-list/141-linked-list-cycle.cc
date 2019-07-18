@@ -1,22 +1,34 @@
+
+/*
+ * Copyright (C) Jianyong Chen
+ */
+
 #include "../include/make-linkedlist.h"
 
 class Solution {
     public:
         bool hasCycle(ListNode *head) {
-            ListNode *slow, *fast;
+            ListNode  *slow, *fast;
 
-            if (head == nullptr)
+            if (head == nullptr) {
                 return false;
+            }
 
             slow = head;
             fast = head->next;
-            while (slow != fast) {
-                if (slow == nullptr || fast == nullptr || fast->next == nullptr)
+            while (fast != nullptr) {
+                if (slow == fast) {
+                    return true;
+                }
+
+                fast = fast->next;
+                if (fast == nullptr) {
                     return false;
+                }
+                fast = fast->next;
                 slow = slow->next;
-                fast = fast->next->next;
             }
 
-            return true;
+            return false;
         }
 };
