@@ -10,30 +10,38 @@
 class Solution {
 	public:
 		std::vector<int> findAnagrams(std::string s, std::string p) {
-			int               left, right;
+			int               left, right, count;
 			std::vector<int>  output;
-			std::vector<int>  hash1(26, 0), hash2(26, 0);
+			std::vector<int>  hash(26, 0);
 
 			if (s.size() < p.size()) {
 				return output;
 			}
 
 			for (auto c : p) {
-				hash1[c-'a']++;
+				hash[c-'a']++;
 			}
 
+            count = 0;
 			left = 0;
 			for (right = 0; right < s.size(); right++) {
-				hash2[s[right]-'a']++;
+				hash[s[right]-'a']--;
+                if (hash[s[right]-'a'] >= 0) {
+                    count++;
+                }
 
-				if (hash1 == hash2) {
-					output.push_back(left);
-				}
+                if (right >= p.size()) {
+                    hash[s[left]-'a']++;
+                    if (hash[s[left]-'a'] > 0) {
+                        count--;
+                    }
 
-				if (right-left+1 >= p.size()) {
-					hash2[s[left]-'a']--;
-					left++;
-				}
+                    left++;
+                }
+
+                if (count == p.size()) {
+                    output.push_back(left);
+                }
 			}
 
 			return output;
