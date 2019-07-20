@@ -3,11 +3,23 @@
 class Solution {
     public:
         TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode* q) {
-            // 如果对于root，p，q在root的两棵子树上，那么LCA就是root
-            // 否则就向下走到p，q所在的子树(此时他们两个在同一棵树上)
-            // 知道他们两个在不同的子树上，或者其中一个是另一个的子结点
-            while ((root->val - p->val) * (root->val - q->val) > 0)
+
+            /*
+             * 一个很巧妙的算法(我觉得)
+             *
+             * 由于 tree 是二叉搜索树，是有序的
+             *
+             * 所以可以将 root 节点的值和要查找的两个节点的值进行比较
+             *
+             *      1. 如果 root 的值在 p、q 之间，那么这两个节点一定是分别在 root 的左右
+             *         此时 root 就是它俩的 lca
+             *      2. 否则的话，他俩就都在 root 的某一边，往那边递归搜索即可
+             */
+
+            while ((root->val - p->val) * (root->val - q->val) > 0) {
                 root = (p->val < root->val) ? root->left : root->right;
+            }
+
             return root;
         }
 };
