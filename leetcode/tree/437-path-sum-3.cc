@@ -44,3 +44,37 @@ class Solution {
         int  count = 0;
         int  origin_sum;
 };
+
+class Solution2
+{
+    public:
+        int pathSum(TreeNode *root, int sum) {
+            std::vector<int>  pre_sums;
+
+            pre_sums.push_back(0);
+            return dfs(root, pre_sums, sum);
+        }
+
+        int dfs(TreeNode *root, std::vector<int> &pre_sums, int target_sum) {
+            int  cur_sum, count;
+
+            if (root == nullptr) {
+                return 0;
+            }
+
+            count = 0;
+            cur_sum = root->val + pre_sums.back();
+            for (auto pre_sum : pre_sums) {
+                if (cur_sum - pre_sum == target_sum) {
+                    ++count;
+                }
+            }
+
+            pre_sums.push_back(cur_sum);
+            count += dfs(root->left, pre_sums, target_sum);
+            count += dfs(root->right, pre_sums, target_sum);
+            pre_sums.pop_back();
+
+            return count;
+        }
+};
