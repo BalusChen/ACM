@@ -1,18 +1,30 @@
-#include "include/make-tree.h"
+
+/*
+ * Copyright (C) Jianyong Chen
+ */
+
+#include "../include/make-tree.h"
 
 class Solution {
     public:
         int sumOfLeftLeaves(TreeNode *root) {
             int sum = 0;
-            if (root == nullptr)
+
+            if (root == nullptr) {
                 return 0;
+            }
+
             if (root->left != nullptr && IsLeaf(root->left)) {
                 sum += root->left->val;
+
             } else {
                 sum += sumOfLeftLeaves(root->left);
             }
-            if (root->right != nullptr)
+
+            if (root->right != nullptr) {
                 sum += sumOfLeftLeaves(root->right);
+            }
+
             return sum;
         }
 
