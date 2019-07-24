@@ -6,6 +6,10 @@
 #include <vector>
 #include <unordered_set>
 
+/*
+ * hint: sum(i, j) = sum(0, j) - sum(0, i)
+ */
+
 class Solution {
     public:
         int subarraySum(std::vector<int>& nums, int k) {
