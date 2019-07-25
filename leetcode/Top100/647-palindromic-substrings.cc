@@ -63,6 +63,45 @@ class Solution {
 };
 
 
+class Solution2 {
+    public:
+        int countSubstrings(std::string s) {
+            int  i, left, right, count;
+
+            count = 0;
+            for (i = 0; i < s.size(); i++) {
+
+                /*
+                 * odd-length palindromic substrings
+                 */
+
+                left = i - 1;
+                right = i + 1;
+                while (left >= 0 && right < s.size() && s[left] == s[right]) {
+                    count++;
+                    left--;
+                    right++;
+                }
+
+                /*
+                 * even-length palindromic substrings
+                 */
+
+                left = i;
+                right = i + 1;
+                while (left >= 0 && right < s.size() && s[left] == s[right]) {
+                    count++;
+                    left--;
+                    right++;
+                }
+            }
+
+            count += s.size();
+            return count;
+        }
+};
+
+
 int
 main(int argc, char **argv)
 {
