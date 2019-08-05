@@ -22,6 +22,7 @@ class Solution {
         }
 };
 
+
 class Solution2 {
     public:
         int search(std::vector<int> &nums, int target) {
@@ -108,6 +109,53 @@ class Solution2 {
 
                 } else {
                     return middle;
+                }
+            }
+
+            return -1;
+        }
+};
+
+
+class Solution3 {
+    public:
+        int search(std::vector<int>& nums, int target) {
+            int  left, right, middle;
+
+            left = 0;
+            right = nums.size() - 1;
+            while (left <= right) {
+                middle = (left + right) / 2;
+
+                if (nums[middle] == target) {
+                    return middle;
+                }
+
+                if (nums[left] <= nums[middle]) {
+
+                    /*
+                     * left 和 middle 在同一边
+                     */
+
+                    if (nums[left] <= target && target < nums[middle]) {
+                        right = middle - 1;
+
+                    } else {
+                        left = middle + 1;
+                    }
+
+                } else {
+
+                    /*
+                     * middle 和 right 在同一边
+                     */
+
+                    if (nums[middle] < target && target <= nums[right]) {
+                        left = middle + 1;
+
+                    } else {
+                        right = middle - 1;
+                    }
                 }
             }
 
