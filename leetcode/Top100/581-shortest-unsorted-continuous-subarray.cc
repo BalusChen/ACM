@@ -45,5 +45,28 @@ class Solution
 
             return start_idx == INT_MAX ? 0 : end_idx - start_idx + 1;
         }
-};
 
+        int findUnsortedSubarray2(std::vector<int>& nums) {
+            int  i, max_seen, min_seen, left, right;
+
+            max_seen = INT_MIN;
+            min_seen = INT_MAX;
+            left = 0;
+            right = 0;
+            for (i = 0; i < nums.size(); i++) {
+                max_seen = std::max(max_seen, nums[i]);
+                if (max_seen > nums[i]) {
+                    right = i;
+                }
+            }
+
+            for (i = nums.size() - 1; i >= 0; i--) {
+                min_seen = std::min(min_seen, nums[i]);
+                if (min_seen < nums[i]) {
+                    left = i;
+                }
+            }
+
+            return left == right ? 0 : right - left + 1;
+        }
+};
