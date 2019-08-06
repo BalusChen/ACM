@@ -38,7 +38,7 @@ class Solution {
                 idx++;
             }
 
-            idx += 1;   // skip left square bracket
+            idx++;   // skip left square bracket
             while (s[idx] != ']') {
                 if (isdigit(s[idx])) {
                     idx = decodeFromDigit(s, idx, part);
