@@ -4,6 +4,7 @@
  */
 
 #include <vector>
+#include <unordered_set>
 
 class Solution {
     public:
@@ -38,4 +39,30 @@ class Solution {
 
             return std::max(cur_len, max_len);
         }
+};
+
+class Solution2 {
+    int longestConsecutive(std::vector<int>& nums) {
+        int                      cur_len, max_len, cur_num;
+        std::unordered_set<int>  uiset;
+
+        for (auto c : nums) {
+            uiset.insert(c);
+        }
+
+        max_len = 0;
+        for (auto num : uiset) {
+            cur_num = num;
+            cur_len = 1;
+
+            while (uiset.find(cur_num+1) != uiset.end()) {
+                cur_len++;
+                cur_num++;
+            }
+
+            max_len = std::max(cur_len, max_len);
+        }
+
+        return max_len;
+    }
 };
