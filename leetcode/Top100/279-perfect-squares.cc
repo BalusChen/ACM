@@ -41,3 +41,46 @@ class Solution
             return dp[n];
         }
 };
+
+
+/*
+ * Iterative Deepening Depth First Search
+ */
+
+class Solution2
+{
+    public:
+        int numSquares(int n) {
+            int  nnumbers;
+
+            for (nnumbers = 1; /* void */; nnumbers++) {
+                if (dfs(n, nnumbers)) {
+                    return nnumbers;
+                }
+            }
+
+            return 0;
+        }
+
+    private:
+        bool dfs(int rest, int nnumbers) {
+            int  i, square;
+
+            if (nnumbers == 0) {
+                return !rest;
+            }
+
+            for (i = std::sqrt(rest); i >= 1; i--) {
+                square = i * i;
+                if (square * nnumbers < rest) {
+                    break;
+                }
+
+                if (dfs(rest - square, nnumbers - 1)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+};
