@@ -22,7 +22,9 @@ class Solution {
             return results;
         }
 
-        void aux(std::vector<int> &candidates, int rest, std::vector<int> &cur, int idx) {
+        void aux(std::vector<int> &candidates, int rest, std::vector<int> &cur,
+                 int idx)
+        {
             int  i;
 
             if (rest < 0) {
