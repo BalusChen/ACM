@@ -45,6 +45,14 @@ class Solution
                     dp[v] += dp[v-nums[i]];
                 }
 
+#ifndef NDEBUG
+                for (auto i : dp) {
+                    printf("%3d  ", i);
+                }
+                printf("\n");
+#endif
+
+
 #if 0
                 for (v = nums[i]; v <= target; v++) {
                     dp[v] += dp[v-nums[i]];
