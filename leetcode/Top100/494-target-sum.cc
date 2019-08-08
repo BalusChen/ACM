@@ -44,8 +44,33 @@ class Solution
                 for (v = target; v >= nums[i]; v--) {
                     dp[v] += dp[v-nums[i]];
                 }
+
+#if 0
+                for (v = nums[i]; v <= target; v++) {
+                    dp[v] += dp[v-nums[i]];
+                }
+#endif
             }
 
             return dp.back();
         }
 };
+
+
+int
+main(int argc, char **argv)
+{
+    int               S;
+    Solution          ans;
+    std::vector<int>  nums;
+
+    nums = { 1, 1, 1, 1, 1 };
+    S = 3;
+    printf("TargetSum: %d\n", ans.findTargetSumWays(nums, S));
+
+    nums = { 1, 3, 2, 4, 7 };
+    S = 9;
+    printf("TargetSum: %d\n", ans.findTargetSumWays(nums, S));
+
+    return 0;
+}
