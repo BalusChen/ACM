@@ -7,6 +7,13 @@
 class Solution {
     public:
         double Power(double base, int exp) {
+            if (base == 0 && exp <=0) {
+
+                /* error */
+
+                return 0.0;
+            }
+
             if (exp < 0) {
                 return 1.0 / aux(base, -exp);
 
