@@ -31,24 +31,26 @@ class Solution {
         void aux(TreeNode *root, int res, std::vector<int> &prev,
                 Matrix<int> &pathes)
         {
-            if (root->left == nullptr && root->right == nullptr) {
-                if (root->val == res) {
-                    prev.push_back(root->val);
-                    pathes.push_back(prev);
-                    prev.pop_back();
+            prev.push_back(root->val);
+
+            if (IsLeaf(root) && root->val == res) {
+                pathes.push_back(prev);
+
+            } else {
+
+                if (root->left != nullptr) {
+                    aux(root->left, res - root->val, prev, pathes);
                 }
 
-                return;
+                if (root->right != nullptr) {
+                    aux(root->right, res - root->val, prev, pathes);
+                }
             }
 
-            res -= root->val;
-            prev.push_back(root->val);
-            if (root->left != nullptr) {
-                aux(root->left, res, prev, pathes);
-            }
-            if (root->right != nullptr) {
-                aux(root->right, res, prev, pathes);
-            }
             prev.pop_back();
+        }
+
+        bool IsLeaf(TreeNode *root) const {
+            return root->left == nullptr && root->right == nullptr;
         }
 };
