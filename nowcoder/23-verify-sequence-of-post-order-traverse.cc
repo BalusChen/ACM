@@ -46,3 +46,21 @@ class Solution {
         }
 };
 
+
+int
+main(int argc, char **argv)
+{
+    Solution          ans;
+    std::vector<int>  sequence;
+
+    sequence = { 1, 3, 7 };
+    printf("ans: %d\n", ans.VerifySquenceOfBST(sequence));
+
+    sequence = { 17, 13, 37, 15, 11 };
+    printf("ans: %d\n", ans.VerifySquenceOfBST(sequence));
+
+    sequence = { 2, 3, 9, 17, 13, 7 };
+    printf("ans: %d\n", ans.VerifySquenceOfBST(sequence));
+
+    return 0;
+}
