@@ -84,3 +84,16 @@ class Solution2
             return false;
         }
 };
+
+
+int
+main(int argc, char **argv)
+{
+    Solution2  ans;
+    int        number;
+
+    number = 100000;
+    printf("ans(%d): %d\n", number, ans.numSquares(number));
+
+    return 0;
+}
