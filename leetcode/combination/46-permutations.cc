@@ -62,3 +62,41 @@ class Solution {
         std::reverse(nums.begin() + i, nums.end());
     }
 };
+
+
+class Solution2
+{
+    template<typename T>
+    using Matrix = std::vector<std::vector<T>>;
+
+    public:
+        Matrix<int> permute(std::vector<int>& nums) {
+            Matrix<int>  results;
+
+            if (nums.empty()) {
+                return results;
+            }
+
+            aux(results, nums, 0, nums.size() - 1);
+
+            return results;
+        }
+
+    public:
+        void aux(Matrix<int> &results, std::vector<int> &nums, int start,
+                 int end)
+        {
+            int  i;
+
+            if (start == end) {
+                results.push_back(nums);
+                return;
+            }
+
+            for (i = start; i <= end; i++) {
+                std::swap(nums[start], nums[i]);
+                aux(results, nums, start+1, end);
+                std::swap(nums[start], nums[i]);
+            }
+        }
+};
