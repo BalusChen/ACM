@@ -30,8 +30,17 @@ main(int argc, char **argv)
     std::vector<int>  nums;
 
     nums = { 1, 2, 3, 1 };
+    ans = solution.rob(nums);
+    printf("ans = %d\n", ans);
+
     nums = { 2, 7, 9, 3, 1 };
+    ans = solution.rob(nums);
+    printf("ans = %d\n", ans);
+
     nums = { 1, 3, 1 };
+    ans = solution.rob(nums);
+    printf("ans = %d\n", ans);
+
     nums = { 4, 1, 2, 7, 5, 3, 1 };
     ans = solution.rob(nums);
     printf("ans = %d\n", ans);
