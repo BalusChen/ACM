@@ -43,8 +43,6 @@ class Solution {
 				}
 			}
 
-            printf("count: %d\n", count);
-
 			return count == s1.size() ? true : false;;
 		}
 };
