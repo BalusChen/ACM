@@ -38,13 +38,13 @@ class Solution {
                     continue;
                 }
 
-                convert(str[i]);
+                inverse(str[i]);
                 dfs(results, str, i+1);
-                convert(str[i]);
+                inverse(str[i]);
             }
         }
 
-        void convert(char &ch) {
+        void inverse(char &ch) {
             if (std::isupper(ch)) {
                 ch = std::tolower(ch);
 
