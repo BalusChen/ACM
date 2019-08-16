@@ -11,16 +11,14 @@
 class Solution {
     public:
         int rob(TreeNode* root) {
-            int  max;
-
             max = 0;
             dp[nullptr] = std::vector<int>{0, 0};
-            dfs(max, root);
+            dfs(root);
 
             return max;
         }
 
-        void dfs(int &max, TreeNode *root) {
+        void dfs(TreeNode *root) {
             std::vector<int>  profits;
 
             if (root == nullptr) {
@@ -36,8 +34,8 @@ class Solution {
                 dp[root] = profits;
 
             } else {
-                dfs(max, root->left);
-                dfs(max, root->right);
+                dfs(root->left);
+                dfs(root->right);
 
                 std::vector<int> &left_profits = dp[root->left];
                 std::vector<int> &right_profits = dp[root->right];
@@ -51,5 +49,6 @@ class Solution {
         }
 
     private:
+        int  max;
         std::unordered_map<TreeNode *, std::vector<int>>  dp;
 };
