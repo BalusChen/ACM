@@ -51,14 +51,16 @@ class Solution2 {
     public:
         int climbStairs(int n) {
             std::vector<int> dp(n+1);
+            int sum = 0;
 
             dp[0] = 1;
             dp[1] = 1;
-            for (std::size_t i = 2; i < n+1; ++i) {
-                dp[i] = dp[i-1] + dp[i-2];
+            for (std::size_t i = 2; i <= n; ++i) {
+                sum = dp[0] + dp[1];
+                dp[(i-1) % 2] = sum;
             }
 
-            return dp[n];
+            return dp[(n-1) % 2];
         }
 };
 
@@ -77,7 +79,7 @@ main(int argc, char **argv)
     printf("sum(3): %d\n", ans.climbStairs(nstairs));
 
     nstairs = 7;
-    printf("sum(3): %d\n", ans2.climbStairs(nstairs));
+    printf("sum(7): %d\n", ans2.climbStairs(nstairs));
 
     return 0;
 }
