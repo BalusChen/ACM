@@ -45,3 +45,36 @@ class Solution {
         int  max;
         std::unordered_map<TreeNode *, std::vector<int>>  dp;
 };
+
+
+class Solution2
+{
+    public:
+        int rob(TreeNode *root) {
+            std::vector<int>  profits;
+
+            profits = dfs(root);
+            return std::max(profits[0], profits[1]);
+        }
+
+    private:
+        std::vector<int> dfs(TreeNode *root) {
+            std::vector<int>  profits, left_profits, right_profits;
+
+            if (root == nullptr) {
+                return { 0, 0 };
+            }
+
+            left_profits = dfs(root->left);
+            right_profits = dfs(root->right);
+
+            /* profits[0]: robbed; profits[1]: not robbed */
+
+            profits.resize(2);
+            profits[0] = left_profits[1] + right_profits[1] + root->val;
+            profits[1] = std::max(left_profits[0], left_profits[1])
+                       + std::max(right_profits[0], right_profits[1]);
+
+            return profits;
+        }
+};
