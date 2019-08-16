@@ -35,7 +35,7 @@ class Solution {
             std::vector<int> &right_profits = dp[root->right];
             profits[0] = left_profits[1] + right_profits[1] + root->val;
             profits[1] = std::max(left_profits[0] , left_profits[1])
-                + std::max(right_profits[0] , right_profits[1]);
+                       + std::max(right_profits[0] , right_profits[1]);
 
             dp[root] = profits;
             max = std::max(std::max(profits[0], profits[1]), max);
