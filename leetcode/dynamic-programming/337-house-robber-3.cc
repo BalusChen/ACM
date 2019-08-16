@@ -28,21 +28,14 @@ class Solution {
             /* profits[0]: robbed; profits[1]: not robbed */
 
             profits.resize(2);
-            if (root->left == nullptr && root->right == nullptr) {
-                profits[0] = root->val;
-                profits[1] = 0;
-                dp[root] = profits;
+            dfs(root->left);
+            dfs(root->right);
 
-            } else {
-                dfs(root->left);
-                dfs(root->right);
-
-                std::vector<int> &left_profits = dp[root->left];
-                std::vector<int> &right_profits = dp[root->right];
-                profits[0] = left_profits[1] + right_profits[1] + root->val;
-                profits[1] = std::max(left_profits[0] , left_profits[1])
-                    + std::max(right_profits[0] , right_profits[1]);
-            }
+            std::vector<int> &left_profits = dp[root->left];
+            std::vector<int> &right_profits = dp[root->right];
+            profits[0] = left_profits[1] + right_profits[1] + root->val;
+            profits[1] = std::max(left_profits[0] , left_profits[1])
+                + std::max(right_profits[0] , right_profits[1]);
 
             dp[root] = profits;
             max = std::max(std::max(profits[0], profits[1]), max);
