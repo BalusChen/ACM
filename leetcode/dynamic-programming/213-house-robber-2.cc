@@ -57,5 +57,8 @@ main(int argc, char **argv)
     nums = { 1, 2, 3, 1 };
     printf("ans: %d\n", ans.rob(nums));
 
+    nums = { 3, 2, 1, 7, 4, 13, 6, 7, 3 };
+    printf("ans: %d\n", ans.rob(nums));
+
     return 0;
 }
