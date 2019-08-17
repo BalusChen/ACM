@@ -12,14 +12,11 @@
 class Solution {
     public:
         int countNumbersWithUniqueDigits(int n) {
-            int               i;
-            std::vector<int>  dp;
+            int  i, count;
 
             if (n < 2) {
                 return std::pow(10, n);
             }
-
-            dp.resize(n+1);
 
             /*
              * if `n` == 0; then 1 is the only only in [0, 2^0],
@@ -30,13 +27,12 @@ class Solution {
              * to avoid calculate twice, we simply set dp[0] = 0;
              */
 
-            dp[0] = 0;
-            dp[1] = 10;
+            count = 10;
             for (i = 2; i <= n; i++) {
-                dp[i] = countUniqueOfLengthK(i);
+                count += countUniqueOfLengthK(i);
             }
 
-            return std::accumulate(dp.begin(), dp.end(), 0);
+            return count;
         }
 
         int countUniqueOfLengthK(int k) {
