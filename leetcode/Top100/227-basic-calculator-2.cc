@@ -81,10 +81,10 @@ private:
 
     void consume(tok_type_e type) {
         assert(type == cur_token.type);
-        cur_token = get_next_cur_token();
+        cur_token = get_next_token();
     }
 
-    tok_t get_next_cur_token() {
+    tok_t get_next_token() {
         long  number;
 
         while (cur_pos < text.size()) {
@@ -134,7 +134,7 @@ public:
     int calculate(std::string s) {
         text = s;
         cur_pos = 0;
-        cur_token = get_next_cur_token();
+        cur_token = get_next_token();
 
         return expr();
     }
