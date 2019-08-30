@@ -26,7 +26,7 @@ class Solution
 
             if (i > 0) {
                 i--;
-                for (j = nums.size() - 1; j >= 0; j--) {
+                for (j = nums.size() - 1; j > i; j--) {
                     if (nums[j] > nums[i]) {
                         break;
                     }
