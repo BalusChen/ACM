@@ -31,3 +31,39 @@ ListNode* insertionSortList(ListNode *head) {
     return p;
 }
 
+ListNode *
+insertionSortList2(ListNode *head)
+{
+    ListNode  pre_head(0), *p, *prev, *next, *cur;
+
+    if (!head || !head->next) {
+        // empty list or only one element
+        return head;
+    }
+
+    cur = head;
+    while (cur->next != nullptr) {
+        head = head->next;
+        prev = cur;
+        next = cur->next;
+
+        // find proper position
+        while (next && (next->val < cur->val)) {
+            prev = next;
+            next = next->next;
+        }
+
+        // put cur to the proper position
+        if (prev != cur) {
+            cur->next = next;
+            prev->next = cur;
+        }
+
+        cur = head;
+    }
+
+    pre_head.next = head;
+    p = &pre_head;
+
+    return p;
+}
