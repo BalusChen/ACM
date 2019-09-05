@@ -9,10 +9,7 @@ class Solution
     public:
         bool isPowerOfTwo(int n)
         {
-            long  l;
-
-            l = n;
-            return l != 0 && (l & (l-1)) == 0;
+            return n > 0 && (n & (n - 1)) == 0;
         }
 
 };
