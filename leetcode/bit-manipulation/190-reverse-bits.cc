@@ -20,7 +20,9 @@ class Solution
                 l = (n >> (31 - i)) & 1;
                 r = (n >> i) & 1;
 
+#if 0
                 printf("l:%d\tr:%d\n", l, r);
+#endif
 
                 if (l ^ r) {    // 不同才需要交换
                     if (l == 0) {
